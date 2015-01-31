@@ -14,6 +14,7 @@ public class AmbientLightLCDExample {
     public static void run() throws AlreadyConnectedException, IOException, TimeoutException, NotConnectedException {
 
         IPConnection ipcon = new IPConnection(); // Create IP connection
+
         BrickletAmbientLight al = new BrickletAmbientLight(UID_BRICKLET_AMBIENT_LIGHT, ipcon); // Create device object
         BrickletLCD20x4 lcd = new BrickletLCD20x4(UID_BRICKLET_LCD, ipcon); // Create device object
 
@@ -25,16 +26,16 @@ public class AmbientLightLCDExample {
 
         String illuminanceMessage = "Illuminance: " + illuminance/10.0 + " Lux";
 
-        // Turn backlight on
+        // Turn LCD backlight on
         lcd.backlightOn();
 
         // Write to the LCD
         lcd.writeLine((short)0, (short)0, illuminanceMessage);
-
         System.out.println(illuminanceMessage);
 
         System.out.println("Press key to exit"); System.in.read();
 
+        // Turn LCD backlight off
         lcd.backlightOff();
         System.out.println("LCD Backlight turned off");
 
